@@ -1,0 +1,30 @@
+// Will be compiled down to a single stylesheet with your sass files
+vendor(prop, args)
+  -o-{prop}      args
+  -ms-{prop}     args
+  -moz-{prop}    args
+  -webkit-{prop} args
+  {prop} args
+
+trans(duration = 0.3s, delay = 0s)
+  vendor('transition', duration all ease delay)
+
+#plot
+  width 600px
+  height 300px
+
+input:focus
+  background-color yellow
+
+// table
+.grid
+  border: solid black 1px;
+
+.grid th, .grid td
+  border: dashed black 1px;
+
+.selected
+  background-color: #FFB;
+
+.index
+  background-color: #BFB;

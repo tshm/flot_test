@@ -12,13 +12,10 @@ app.directive('flot', function() {
       }, true);
       //
       elm.bind('plotclick', function( event, pos, item ) {
-        //console.log(vent, pos, item]);
-        var args = { x: pos.x, y: pos.y };
-        if ( item ) {
-          args.dataIndex = item.dataIndex;
-          args.seriesIndex = item.seriesIndex;
-        }
-        scope.click({ args: args });
+        var callback = scope.click();
+        //console.log(event, pos, item);
+        callback( item );
+        scope.$apply();
       });
       //
       elm.bind('plotselected', function( event, ranges ) {

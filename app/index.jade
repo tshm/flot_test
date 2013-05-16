@@ -14,8 +14,8 @@ head
 	meta(name='description',content='')
 	meta(name='viewport',content='width=device-width')
 	// build:css styles/styles.css
-	link(rel='stylesheet',href='styles/bootstrap.css')
-	link(rel='stylesheet',href='styles/icons.css')
+	//link(rel='stylesheet',href='styles/bootstrap.css')
+	//link(rel='stylesheet',href='styles/icons.css')
 	link(rel='stylesheet',href='styles/main.css')
 	// endbuild
 body(ng-app='flotterApp')
@@ -35,26 +35,18 @@ body(ng-app='flotterApp')
 		h2 Flotter
 		.row
 			.span8
-				#plot(flot='graphdata', click='plotclick(args)')
-			.span4(ng-show="debug") {{ datasets[0].samples.slice(0,5) | json }}
-		table.grid
-			colgroup
-				col.index
-				col(ng-repeat='s in series',ng-class='{selected: $index == selectedIndex}')
-			thead
-				tr
-					th i
-					th(ng-repeat='s in series', ng-click='selectColumn($index)') {{ s.title }}
-			tbody
-				tr(ng-repeat='num in series[0].array')
-					td {{ $index }}
-					td(ng-repeat='s in series') {{ s.array[ $parent.$index ] }}
-
+				#plot(flot='graphdata', click='plotclick')
+		ul
+			li(ng-repeat='s in series')
+				label
+					input(type='checkbox',ng-model='s.show')
+					span -- {{ s.label }} : {{ s.data }}
 
 	// build:js scripts/vendors.js
 	script(src='components/jquery/jquery.js')
 	script(src='components/angular/angular.js')
 	script(src='components/flot/jquery.flot.js')
+	script(src='components/flot/jquery.flot.pie.js')
 	// endbuild
 	// build:js scripts/scripts.js
 	script(src='scripts/shim.js')
